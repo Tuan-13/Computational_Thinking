@@ -1,0 +1,9 @@
+streamlit
+folium
+streamlit-folium
+requests
+streamlit-js-eval
+geopy
+unidecode
+deep-translator
+google-genai

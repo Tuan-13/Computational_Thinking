@@ -1,0 +1,655 @@
+/* ============================================
+   SMART RESTAURANT FINDER - MODERN UI DESIGN
+   ============================================ */
+
+/* GOOGLE FONTS - Font hiện đại */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   1. BIẾN CSS - COLOR PALETTE HIỆN ĐẠI
+   ============================================ */
+:root {
+    /* Primary Colors - Gradient Coral/Orange */
+    --primary-start: #FF6B6B;
+    --primary-end: #FF8E53;
+    --primary-gradient: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+
+    /* Secondary Colors - Teal/Cyan */
+    --secondary-start: #4ECDC4;
+    --secondary-end: #44A08D;
+    --secondary-gradient: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+
+    /* Accent Colors */
+    --accent-purple: #667eea;
+    --accent-pink: #f093fb;
+    --accent-blue: #4facfe;
+
+    /* Neutral Colors */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --border-color: #e2e8f0;
+    --border-hover: #cbd5e1;
+
+    /* Glass effect */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.5);
+
+    /* Status Colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+/* ============================================
+   DARK MODE VARIABLES
+   ============================================ */
+[data-theme="dark"] {
+    /* Primary Colors - giữ nguyên gradient */
+    --primary-start: #FF6B6B;
+    --primary-end: #FF8E53;
+    --primary-gradient: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+
+    /* Secondary Colors */
+    --secondary-start: #4ECDC4;
+    --secondary-end: #44A08D;
+    --secondary-gradient: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+
+    /* Accent Colors */
+    --accent-purple: #818cf8;
+    --accent-pink: #f472b6;
+    --accent-blue: #60a5fa;
+
+    /* Dark Neutral Colors */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --border-hover: #475569;
+
+    /* Glass effect - dark */
+    --glass-bg: rgba(30, 41, 59, 0.85);
+    --glass-border: rgba(51, 65, 85, 0.5);
+
+    /* Status Colors - brighter for dark mode */
+    --success: #34d399;
+    --warning: #fbbf24;
+    --error: #f87171;
+    --info: #60a5fa;
+
+    /* Shadows - more subtle in dark mode */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+    --shadow-glow: 0 0 20px rgba(255, 107, 107, 0.4);
+}
+
+/* ============================================
+   DARK MODE - SIDEBAR LABELS FIX
+   ============================================ */
+[data-theme="dark"] section[data-testid="stSidebar"] p,
+[data-theme="dark"] section[data-testid="stSidebar"] span,
+[data-theme="dark"] section[data-testid="stSidebar"] label,
+[data-theme="dark"] section[data-testid="stSidebar"] div {
+    color: #e2e8f0 !important;
+}
+
+/* Dark mode - Chat input placeholder */
+[data-theme="dark"] .stChatInput textarea::placeholder {
+    color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .stChatInput textarea {
+    color: #f1f5f9 !important;
+}
+
+/* Dark mode - Text input placeholder */
+[data-theme="dark"] .stTextInput input::placeholder {
+    color: #94a3b8 !important;
+}
+
+/* ============================================
+   2. NỀN TOÀN TRANG - TRANSPARENT ALL
+   ============================================ */
+.stApp {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    min-height: 100vh;
+}
+
+/* XÓA TRIỆT ĐỂ TẤT CẢ BACKGROUND */
+.stApp > header,
+.stApp > div,
+.stApp > section,
+.main,
+.main > div,
+.main > div > div,
+.stMain,
+.stMain > div,
+.stMain > div > div,
+.stMainBlockContainer,
+.block-container,
+.block-container > div,
+.stVerticalBlock,
+.stHorizontalBlock,
+header,
+header[data-testid="stHeader"],
+[data-testid="stHeader"],
+[data-testid="stHeader"] > div,
+[data-testid="stAppViewContainer"],
+[data-testid="stAppViewContainer"] > div,
+[data-testid="stAppViewBlockContainer"],
+[data-testid="stMain"],
+[data-testid="stMainBlockContainer"],
+[data-testid="stVerticalBlock"],
+[data-testid="stVerticalBlock"] > div,
+[data-testid="stHorizontalBlock"],
+[data-testid="stBottom"],
+[data-testid="stBottomBlockContainer"],
+[data-testid="column"],
+[data-testid="stMarkdownContainer"],
+.element-container,
+.stElementContainer,
+[data-testid="element-container"],
+[class*="block-container"],
+[class*="stBlock"],
+section[data-testid="stSidebarContent"],
+div[data-testid="stDecoration"],
+div[data-testid="stToolbar"],
+div[data-testid="stStatusWidget"],
+.stDeployButton,
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+[data-testid="baseButton-header"],
+[data-testid="stHeaderActionElements"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Block container padding */
+.block-container {
+    padding-top: 1rem !important;
+}
+
+/* Header Streamlit - trong suốt hoàn toàn */
+header[data-testid="stHeader"] {
+    background: transparent !important;
+    backdrop-filter: none !important;
+}
+
+/* ============================================
+   3. SIDEBAR - THIẾT KẾ HIỆN ĐẠI
+   ============================================ */
+section[data-testid="stSidebar"] {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(12px) !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+
+section[data-testid="stSidebar"] > div {
+    padding-top: 2rem;
+}
+
+/* Sidebar selectbox styling */
+section[data-testid="stSidebar"] .stSelectbox > div > div {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+section[data-testid="stSidebar"] .stSelectbox > div > div:hover {
+    border-color: var(--primary-start);
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   4. TIÊU ĐỀ ỨNG DỤNG
+   ============================================ */
+/* h1 được custom inline trong main.py */
+
+/* Headings chung */
+h2, h3 {
+    color: var(--text-primary) !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600 !important;
+}
+
+/* ============================================
+   5. TABS - THIẾT KẾ PILL STYLE
+   ============================================ */
+div[data-testid="stTabs"] {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    padding: 0.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--glass-border);
+}
+
+div[data-testid="stTabs"] > div[role="tablist"] {
+    gap: 0.5rem;
+    background: var(--bg-primary);
+    padding: 0.375rem;
+    border-radius: 12px;
+}
+
+div[data-testid="stTabs"] button[role="tab"] {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 10px !important;
+    border: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    color: var(--text-secondary) !important;
+}
+
+div[data-testid="stTabs"] button[role="tab"]:hover {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+div[data-testid="stTabs"] button[aria-selected="true"] {
+    background: var(--primary-gradient) !important;
+    color: white !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+div[data-testid="stTabs"] button[aria-selected="true"] p {
+    color: white !important;
+}
+
+/* Tab indicator line - ẩn đi */
+div[data-testid="stTabs"] [data-baseweb="tab-highlight"] {
+    display: none;
+}
+
+/* ============================================
+   6. NÚT BẤM - MODERN GRADIENT BUTTONS
+   ============================================ */
+/* Primary button */
+div.stButton > button[kind="primary"],
+div.stButton > button {
+    background: var(--primary-gradient) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 14px 0 rgba(255, 107, 107, 0.35) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-transform: none !important;
+}
+
+div.stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px 0 rgba(255, 107, 107, 0.45) !important;
+}
+
+div.stButton > button:active {
+    transform: translateY(0) !important;
+}
+
+/* Secondary buttons */
+div.stButton > button[kind="secondary"] {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border: 2px solid var(--border-color) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+div.stButton > button[kind="secondary"]:hover {
+    border-color: var(--primary-start) !important;
+    color: var(--primary-start) !important;
+}
+
+/* ============================================
+   7. INPUT FIELDS - FLOATING LABEL STYLE
+   ============================================ */
+.stTextInput > div > div > input {
+    background: var(--bg-secondary) !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    padding: 0.875rem 1rem !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1rem !important;
+    color: var(--text-primary) !important;
+    transition: all 0.3s ease !important;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: var(--primary-start) !important;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15) !important;
+    outline: none !important;
+}
+
+.stTextInput > div > div > input::placeholder {
+    color: var(--text-muted) !important;
+}
+
+/* ============================================
+   8. CARDS & CONTAINERS
+   ============================================ */
+/* CHỈ card có border mới có background - search box */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 16px !important;
+    box-shadow: var(--shadow-lg) !important;
+    padding: 1.25rem !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Text trong cards */
+div[data-testid="stVerticalBlockBorderWrapper"] h4,
+div[data-testid="stVerticalBlockBorderWrapper"] h5,
+div[data-testid="stVerticalBlockBorderWrapper"] strong {
+    color: var(--text-primary) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"] p,
+div[data-testid="stVerticalBlockBorderWrapper"] span {
+    color: var(--text-secondary) !important;
+}
+
+/* ============================================
+   9. EXPANDER - SETTINGS PANEL
+   ============================================ */
+div[data-testid="stExpander"] {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 12px !important;
+    box-shadow: var(--shadow-md) !important;
+    overflow: hidden;
+}
+
+div[data-testid="stExpander"] > details > summary {
+    padding: 1rem 1.25rem !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+    background: transparent !important;
+}
+
+div[data-testid="stExpander"] > details > summary:hover {
+    background: var(--bg-primary) !important;
+}
+
+div[data-testid="stExpander"] > details[open] > summary {
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Nội dung bên trong expander */
+div[data-testid="stExpander"] > details > div {
+    background: transparent !important;
+}
+
+/* ============================================
+   10. SELECTBOX & SLIDER
+   ============================================ */
+/* Selectbox */
+.stSelectbox > div > div {
+    background: var(--bg-secondary) !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+}
+
+.stSelectbox > div > div:hover {
+    border-color: var(--primary-start) !important;
+}
+
+.stSelectbox > div > div:focus-within {
+    border-color: var(--primary-start) !important;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15) !important;
+}
+
+/* Slider */
+.stSlider > div > div > div > div {
+    background: var(--primary-gradient) !important;
+}
+
+.stSlider > div > div > div > div > div {
+    background: var(--bg-secondary) !important;
+    border: 2px solid var(--primary-start) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* ============================================
+   11. CHECKBOX
+   ============================================ */
+.stCheckbox > label > div[data-testid="stCheckbox"] > div {
+    border-color: var(--border-color) !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+}
+
+.stCheckbox > label > div[data-testid="stCheckbox"] > div:has(input:checked) {
+    background: var(--primary-gradient) !important;
+    border-color: var(--primary-start) !important;
+}
+
+/* ============================================
+   12. METRICS - INFO CARDS
+   ============================================ */
+div[data-testid="stMetric"] {
+    background: var(--bg-primary);
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+div[data-testid="stMetric"] label {
+    color: var(--text-secondary) !important;
+    font-weight: 500 !important;
+}
+
+div[data-testid="stMetric"] [data-testid="stMetricValue"] {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    font-size: 1.75rem !important;
+}
+
+/* ============================================
+   13. CHAT INTERFACE
+   ============================================ */
+/* Chat container */
+.stChatMessage {
+    background: var(--bg-secondary) !important;
+    border-radius: 16px !important;
+    padding: 1rem !important;
+    margin-bottom: 0.75rem !important;
+    box-shadow: var(--shadow-sm) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* User message */
+.stChatMessage[data-testid="user-message"] {
+    background: linear-gradient(135deg, var(--accent-blue), var(--info)) !important;
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Assistant message */
+.stChatMessage[data-testid="assistant-message"] {
+    background: var(--bg-secondary) !important;
+}
+
+/* Chat input */
+.stChatInput > div {
+    background: var(--bg-secondary) !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: 24px !important;
+    padding: 0.5rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.stChatInput > div:focus-within {
+    border-color: var(--primary-start) !important;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15) !important;
+}
+
+.stChatInput textarea {
+    font-family: 'Inter', sans-serif !important;
+    color: var(--text-primary) !important;
+    background: transparent !important;
+}
+
+/* ============================================
+   14. ALERTS & MESSAGES
+   ============================================ */
+/* Success */
+div[data-testid="stAlert"][data-baseweb="notification"] {
+    border-radius: 12px !important;
+    border: none !important;
+}
+
+.stSuccess {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
+    border-left: 4px solid var(--success) !important;
+}
+
+.stWarning {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+    border-left: 4px solid var(--warning) !important;
+}
+
+.stError {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%) !important;
+    border-left: 4px solid var(--error) !important;
+}
+
+.stInfo {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+    border-left: 4px solid var(--info) !important;
+}
+
+/* ============================================
+   15. SPINNER & LOADING
+   ============================================ */
+.stSpinner > div {
+    border-color: var(--primary-start) !important;
+}
+
+/* ============================================
+   16. DIVIDER
+   ============================================ */
+hr {
+    border: none !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent) !important;
+    margin: 1.5rem 0 !important;
+}
+
+/* ============================================
+   17. SCROLLBAR STYLING
+   ============================================ */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* ============================================
+   18. ANIMATION UTILITIES
+   ============================================ */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* ============================================
+   19. RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem !important;
+    }
+
+    div[data-testid="stTabs"] button[role="tab"] {
+        font-size: 0.875rem !important;
+        padding: 0.5rem 1rem !important;
+    }
+}
+
+/* ============================================
+   20. SPECIAL COMPONENTS
+   ============================================ */
+/* Map container enhancement */
+iframe {
+    border-radius: 16px !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+/* Badge/Tag styles cho kết quả */
+.result-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-distance {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #1e40af;
+}
+
+.badge-time {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #92400e;
+}
+
+.badge-price {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+}
