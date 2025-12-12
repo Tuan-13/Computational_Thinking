@@ -38,10 +38,6 @@ def is_known_food_term(user_query):
     return False
 
 def expand_search_query_smart(user_query):
-    """
-    [CẬP NHẬT MẠNH] Mở rộng từ khóa tìm kiếm để bắt được nhiều quán hơn trên OSM.
-    Xử lý thông minh: Chữ hoa/thường, không dấu, từ đồng nghĩa tiếng Anh.
-    """
     raw_query = user_query.lower().strip()
     norm_query = normalize_text(raw_query)
     
@@ -73,7 +69,7 @@ def expand_search_query_smart(user_query):
                 break
         if dish_found: break 
 
-# 2. Mở rộng theo category nếu chưa tìm thấy dish cụ thể
+
     if not dish_found:
         for cat_key, cat_values in CATEGORY_MAPPINGS.items():
             

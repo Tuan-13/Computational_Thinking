@@ -4,21 +4,21 @@ import math
 from geopy.distance import geodesic
 from utils.translate import get_text
 
-# --- 1. LOGIC TÍNH TOÁN VẬN TỐC & THỜI GIAN ---
+# --- LOGIC TÍNH TOÁN VẬN TỐC & THỜI GIAN ---
 def get_velocity(mode):
     """Trả về vận tốc (m/s) theo chế độ di chuyển"""
-    if mode == "walking": return 1.2      # ~4.3 km/h
-    elif mode == "bicycling" or mode == "cycling": return 3.5  # ~12.6 km/h
-    else: return 7.0                      # ~25 km/h (Vận tốc trung bình trong phố)
+    if mode == "walking": return 1.2      
+    elif mode == "bicycling" or mode == "cycling": return 3.5 
+    else: return 7.0                     
 
 def calculate_time_minutes(distance_meters, mode):
     """Công thức: Thời gian (phút) = Quãng đường (m) / Vận tốc (m/s)"""
     velocity = get_velocity(mode)
     seconds = distance_meters / velocity
     minutes = int(seconds / 60)
-    return max(1, minutes) # Tối thiểu 1 phút
+    return max(1, minutes)
 
-# --- 2. LOGIC XỬ LÝ DỮ LIỆU ---
+# --- LOGIC XỬ LÝ DỮ LIỆU ---
 def process_results(raw_results, center_lat, center_lon, budget, lang):
     """Xử lý dữ liệu thô: tính khoảng cách sơ bộ để sort, tạo dữ liệu giả lập (rating, price)"""
     processed = []
@@ -51,7 +51,7 @@ def process_results(raw_results, center_lat, center_lon, budget, lang):
             "id": place_id, "name": name, "lat": place['lat'], "lon": place['lon'],
             "cuisine": cuisine, "price": simulated_price, "rating": simulated_rating,
             "reviews": simulated_reviews, "score": score,
-            "distance_sort": d, # Khoảng cách này dùng để sort
+            "distance_sort": d, 
             "address": address
         })
     

@@ -16,10 +16,6 @@ def geocode(q: str):
         return None
 
 def check_strict_match(text, keywords):
-    """
-    Kiểm tra xem tên quán có chứa từ khóa không.
-    Logic: Tìm exact match cho từ ngắn, partial match cho từ dài.
-    """
     if not text: return False
     text_norm = normalize_text(str(text)) 
     
@@ -87,14 +83,12 @@ def get_restaurants_from_osm(lat, lon, radius, user_query):
                 cuisine = tags.get('cuisine', '')
                 dish = tags.get('dish', '')
 
-                # 1. Kiểm tra xem Cuisine/Dish có chứa từ khóa không 
                 is_match = False
                 for kw in search_keywords:
                     if kw.lower() in cuisine.lower() or kw.lower() in dish.lower():
                         is_match = True
                         break
                 
-                # 2. Nếu chưa match, kiểm tra kỹ tên quán 
                 if not is_match:
                     if check_strict_match(name, search_keywords):
                         is_match = True

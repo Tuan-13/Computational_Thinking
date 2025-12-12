@@ -19,7 +19,6 @@ load_css()
 
 # --- SIDEBAR ---
 with st.sidebar:
-    # Logo và branding
     is_dark_sidebar = st.session_state.get("dark_mode", False)
     subtitle_color = "#64748b" if not is_dark_sidebar else "#94a3b8"
 
@@ -74,7 +73,7 @@ with st.sidebar:
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 0.5rem;
-    ">🌐 Language / Ngôn ngữ</div>
+    ">🌐 Language</div>
     """, unsafe_allow_html=True)
 
     language_options = {

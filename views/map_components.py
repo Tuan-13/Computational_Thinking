@@ -5,11 +5,8 @@ from folium import plugins
 from streamlit_folium import st_folium
 from streamlit_js_eval import get_geolocation
 import math
-
-# Import các module nội bộ
 from utils.translate import get_text
 from services.route_service import get_route
-# Import logic từ file mới tách
 from views.map_logic import calculate_time_minutes
 
 def render_settings(lang):
@@ -65,11 +62,9 @@ def render_settings(lang):
 
 def render_results_list(results, mode):
     """Hiển thị danh sách quán ăn bên trái"""
-    # Lấy ngôn ngữ và theme hiện tại từ session state
     lang = st.session_state.get("language", "vi")
     is_dark = st.session_state.get("dark_mode", False)
 
-    # Header kết quả với thiết kế mới
     st.markdown(f"""
     <div style="
         background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
@@ -113,7 +108,6 @@ def render_results_list(results, mode):
         est_time_min = calculate_time_minutes(final_dist, mode)
         time_display_str = f"{est_time_min} phút"
 
-        # Card styling dựa trên trạng thái và theme
         if is_selected:
             if is_dark:
                 card_bg = "linear-gradient(135deg, #064e3b 0%, #065f46 100%)"
@@ -141,7 +135,6 @@ def render_results_list(results, mode):
             card_shadow = "0 2px 8px rgba(0,0,0,0.06)"
             number_bg = "linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%)"
 
-        # Badge colors for dark mode
         if is_dark:
             dist_badge_bg = "linear-gradient(135deg, #1e3a5f 0%, #1e40af 100%)"
             dist_badge_color = "#93c5fd"
@@ -233,7 +226,6 @@ def render_results_list(results, mode):
 
 def render_map(center_lat, center_lon, results, mode):
     """Hiển thị bản đồ Folium và đường đi thực tế"""
-    # Lấy ngôn ngữ
     lang = st.session_state.get("language", "vi")
 
     m = folium.Map(location=[center_lat, center_lon], zoom_start=15)
@@ -289,7 +281,6 @@ def render_map(center_lat, center_lon, results, mode):
             display_dist_m = selected_place['distance_sort']
             display_time_min = calculate_time_minutes(display_dist_m, mode)
 
-        # If we have a route but it's approximate (fallback), show a notice
         if steps_to_display and isinstance(steps_to_display, list) and steps_to_display[0].get('approximate'):
             st.info(get_text('real_route_unavailable', lang))
     
@@ -334,11 +325,9 @@ def render_map(center_lat, center_lon, results, mode):
 
 def render_home_page():
     """Hiển thị trang chủ khi chưa tìm kiếm - compact version"""
-    # Lấy trạng thái dark mode
     is_dark = st.session_state.get("dark_mode", False)
     lang = st.session_state.get("language", "vi")
 
-    # Card style chung - glassmorphism với dark mode support
     if is_dark:
         card_style = """
             text-align: center;
@@ -370,7 +359,6 @@ def render_home_page():
         suggestion_border = "rgba(255, 255, 255, 0.5)"
         suggestion_text_color = "#475569"
 
-    # Feature cards - 4 cột
     c1, c2, c3, c4 = st.columns(4)
 
     with c1:
@@ -413,7 +401,6 @@ def render_home_page():
             unsafe_allow_html=True
         )
 
-    # Popular searches - compact
     st.markdown(
         f'''<div style="
             background: {suggestion_bg};

@@ -3,14 +3,11 @@ import streamlit as st
 from utils.translate import get_text
 from services.osm_service import geocode, get_restaurants_from_osm
 from services.search_engine import is_known_food_term
-
-# [CẬP NHẬT] Thay thế import từ map_utils cũ bằng 2 file mới
 from views.map_components import render_settings, render_results_list, render_map, render_home_page
 from views.map_logic import process_results
 
 def render_map_tab(lang):
     # --- GIAO DIỆN TÌM KIẾM ---
-    # Search header
     st.markdown(f"""
     <div style="
         text-align: center;
@@ -38,7 +35,7 @@ def render_map_tab(lang):
 
         with c2:
             search_btn = st.button(
-                f"🔍 {get_text('search_button', lang)}",
+                f"{get_text('search_button', lang)}",
                 type="primary",
                 use_container_width=True
             )
@@ -68,16 +65,13 @@ def render_map_tab(lang):
                     raw_results, center_lat, center_lon, settings['budget'], lang
                 )
             
-            # [MỚI] LOGIC KIỂM TRA KẾT QUẢ RỖNG & PHẢN HỒI THÔNG MINH
             if not st.session_state.search_results:
                 # Kiểm tra xem từ khóa có phải là món ăn đã biết không
                 if is_known_food_term(dish_input):
-                    # Trường hợp 1: Là món ăn hợp lệ nhưng không có quán nào
                     msg = get_text("error_no_food_nearby", lang).format(dish_input)
                     st.error(f"❌ {msg}")
                     st.info(get_text("try_increasing_radius", lang))
                 else:
-                    # Trường hợp 2: Từ khóa rác, không phải món ăn (123, @#$, áo quần...)
                     msg = get_text("error_invalid_query", lang).format(dish_input)
                     st.warning(f"🤔 {msg}")
 
