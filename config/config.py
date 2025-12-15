@@ -48,7 +48,7 @@ BASE_TEXTS = {
     "try_increasing_radius": "💡 Gợi ý: Hãy thử tăng bán kính tìm kiếm trong phần Cài đặt.",
 
     # --- [MỚI] DỊCH THUẬT GIAO DIỆN BẢN ĐỒ & CHỈ ĐƯỜNG ---
-    "go_to_place_btn": "👉 Đi đến quán số {}",
+    "go_to_place_btn": "👉 Đi đến quán ăn số {}",
     "real_route_title": "🗺️ Lộ trình thực tế",
     "actual_dist": "Quãng đường thực tế",
     "driving_dist": "Khoảng cách lái xe",
